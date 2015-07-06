@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="js/jquery-1.11.2.js"></script>
+<script>
+	$(function(){
+		$("#submit").click(function(){
+			var servletUrl = $("#servletUrl").val();
+			var requestType = $("#requestType").val();
+			var actionType = $("#actionType").val();
+			var paramId = $("#paramId").val();
+			var paramUser = $("#paramUser").val();
+			var paramPwd = $("#paramPwd").val();
+			var paramEmail = $("#paramEmail").val();
+			var paramDatetime = $("#paramDatetime").val();
+			var data={
+				id:paramId,
+				user:paramUser,
+				pwd:paramPwd,
+				email:paramEmail,
+				date_time:paramDatetime
+			};
+			var jsonData = JSON.stringify(data);
+			
+			$.ajax({ 
+				   type: "POST",
+				   url: "http://localhost:8080/backend/user_info",
+				   data: "type="+actionType+"&data="+jsonData,
+				   success: function(msg){
+				     $("#result").text(msg);
+				   }
+			});
+		});
+	});
+</script>
+</head>
+<body>
+Notice: use ajax to connection!
+<div>
+	servletUrl<input type="text" id="servletUrl" value="user_info"></input><br>
+	requestType<input type="text" id="requestType" value="post"></input><br>
+	actionType<input type="text" id="actionType" value="list"></input><br>
+	paramId<input type="text" id="paramId" value="10"></input><br>
+	paramUser<input type="text" id="paramUser" value=""></input><br>
+	paramPwd<input type="text" id="paramPwd" value=""></input><br>
+	paramEmail<input type="text" id="paramEmail" value=""></input><br>
+	paramDatetime<input type="text" id="paramDatetime" value="2015-05-10 23:42:46"></input><br>
+	<input type="button" id="submit" value="OK"></input>
+</div>
+<div id="result">
+</div>
+</body>
+</html>
