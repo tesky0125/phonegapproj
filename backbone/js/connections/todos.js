@@ -14,5 +14,6 @@ var app=app||{};
 		},
 		comparator: 'order'//
 	});
+	
 	app.todos = new app.Todos();
 }());

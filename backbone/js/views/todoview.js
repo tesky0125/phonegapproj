@@ -6,8 +6,12 @@ var app=app||{};
 		events:{
 
 		},
-		initialize:function(){},
-		render:function(){},
+		initialize:function(){
+
+		},
+		render:function(){
+			
+		},
 		
 	});
 }(jQuery));
