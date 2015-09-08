@@ -1,2 +1,2 @@
-# phonegapproj
-PhoneGapProject
+# web front project
+web front project
