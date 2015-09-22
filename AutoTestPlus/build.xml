@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="mgv_build" default="run" basedir=".">
+	
+	<!--define variable-->
+	<property name="src" value="src"/>
+	<property name="bin" value="bin"/>
+	<property name="lib" value="lib"/>
+	<property name="dist" value="dist"/>
+	<property name="logs" value="logs"/>
+	<property name="main_class" value="test.MGV_All_Test"/>
+	<property name="jar_file" value="mgv_all_test.jar"/>
+	<property name="setting_file" value="settings.properties"/>
+	<property name="log_file" value="log4j.properties"/>
+	
+	<!--define time-->
+	<tstamp>
+		<format property="today" pattern="yyyy/MM/dd HH:mm:ss"/>
+	</tstamp>
+	<echo message="${today}"></echo>
+	
+	<!--PATH:for javac/build-->
+	<!--all lib-->
+	<!--
+	<path id="alllib">
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	-->
+	<!--selenium lib-->
+	<path id="selenium_lib">
+		<fileset dir="${lib}/selenium-2.44.0">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	<!--log4j lib-->
+	<path id="log4j_lib">
+		<fileset dir="${lib}/apache-log4j-1.2.17">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<!--all lib-->
+	<path id="alllib">
+		<pathelement path="${selenium_lib}"/>
+		<pathelement path="${log4j_lib}"/>
+	</path>
+	
+	<!--PATH:for jar-->
+	<pathconvert property="selenium_lib_jars" pathsep=" ">  
+        <mapper>  
+            <chainedmapper>  
+                <flattenmapper />  
+                <globmapper from="*" to="lib/selenium-2.44.0/*" />
+            </chainedmapper>  
+        </mapper>  
+        <fileset dir="${lib}/selenium-2.44.0">  
+            <include name="*.jar" />  
+        </fileset>
+	</pathconvert>
+	
+	<pathconvert property="selenium_lib_depends_jars" pathsep=" ">  
+        <mapper>  
+            <chainedmapper>  
+                <flattenmapper />  
+                <globmapper from="*" to="lib/selenium-2.44.0/libs/*" />
+            </chainedmapper>  
+        </mapper>  		
+		<fileset dir="${lib}/selenium-2.44.0/libs">  
+            <include name="*.jar" />  
+        </fileset>	
+	</pathconvert>
+	
+	<pathconvert property="log4j_lib_jars" pathsep=" ">  
+        <mapper>  
+            <chainedmapper>  
+                <flattenmapper />  
+                <globmapper from="*" to="lib/apache-log4j-1.2.17/*" />
+            </chainedmapper>  
+        </mapper>  		
+		<fileset dir="${lib}/apache-log4j-1.2.17">  
+            <include name="*.jar" />  
+        </fileset>  		
+    </pathconvert>
+	
+	<property name="all_lib_jars" value="${selenium_lib_jars} ${selenium_lib_depends_jars} ${log4j_lib_jars}" />  
+	<echo message="${all_lib_jars}"></echo>
+	
+	<target name="init-build">
+		<mkdir dir="${bin}"/>
+	</target>
+	
+    <target name="build" depends="init-build">
+    	<javac includeantruntime="true" srcdir="${src}" destdir="${bin}">
+    		<classpath refid="alllib"/>
+    	</javac>
+    </target>
+   
+	<target name="init-dist">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${dist}/lib"/>
+		<copy todir="${dist}/lib">
+			<fileset dir="${lib}"/>
+		</copy>
+	</target>
+	
+	<target name="dist" depends="init-dist,build">
+		<jar jarfile="${dist}/${jar_file}" basedir="${bin}">
+			<manifest>  
+                <attribute name="Main-Class" value="${main_class}" />  
+                <attribute name="Class-Path" value="${all_lib_jars}" />  
+            </manifest> 
+		</jar>
+		<!--
+		<jar jarfile="${dist}/${jar_file}" basedir="${bin}" manifest="MANIFEST.MF"/>
+		-->
+		<copy file="${setting_file}" tofile="${dist}/${setting_file}"/>
+		<copy file="${log_file}" tofile="${dist}/${log_file}"/>
+	</target>
+	
+	<target name="run" depends="clean,dist">
+		<!--
+		<java classname="test.MGV_All_Test">
+			<classpath>
+				<pathelement location="${dist}/${jar_file}"/>
+			</classpath>
+		</java>
+		-->
+		<java jar="${dist}/${jar_file}" fork="true">  
+		</java>  
+	</target>
+	
+    <target name="clean">
+    	<delete dir="${bin}"/>
+    	<delete dir="${dist}"/>
+    	<delete dir="${logs}"/>
+    </target>
+
+</project>
+

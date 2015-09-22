@@ -1,0 +1,2 @@
+1.安装jre(jdk-7u25-windows-i586.exe)
+2.解压chromedriver_win32.zip，并更新settings.properties的driver_path

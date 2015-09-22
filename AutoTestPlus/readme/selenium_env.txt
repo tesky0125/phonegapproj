@@ -1,0 +1,49 @@
+selenium环境配置：
+java方式：
+1.安装jdk+jre(jdk-7u25-windows-i586.exe)，安装eclipse(eclipse-jee-kepler-4.2-R-win32.zip)
+配置java环境变量(path)，可选(如果安装eclipse，eclipse内部配置)，见下
+2.配置selenium用户库(user library)(selenium-java-2.44.0.zip)，配置方式见下
+将selenium-java-2.44.0.zip解压，并将其目录配置成为java user library
+3.配置chrome driver(解压chromedriver_win32.zip)为环境变量(path)
+
+python方式：
+1.安装python(python-2.7.6.msi)，安装eclipse(eclipse-jee-kepler-4.2-R-win32.zip)，安装pydev(PyDev 3.5.0.zip)
+安装eclipse后，安装插件pydev，安装方式见下
+2.安装selenium(selenium-2.44.0.tar.gz)
+将selenium-2.44.0.tar.gz解压，进入其目录，执行python setup.py install
+3.配置chrome driver为环境变量(path)
+
++++++++++++++++++++++++++++++
+配置java环境变量：
+JAVA_HOME:
+D:\Java\jdk1.7.0_25
+CLASSPATH:
+.;%JAVA_HOME%\tools.jar;%JAVA_HOME%\dt.jar;
+PATH:
+%JAVA_HOME%\bin
+
++++++++++++++++++++++++++++++
+eclipse配置用户库：
+eclipse:Windows-Preferences-Java-BuildPath-User Libraries
+New-input lib name(selenium)-Add External JARs-select selenium jars 
+
++++++++++++++++++++++++++++++
+eclipse安装插件，依赖插件安装类型：
+1.方式1，
+eclipse:Help-Install New Software-Add-input name(pydev)-Archive(select pydev.rar from local)
+2.方式2，
+在eclisep-dropins目录下新建插件名称对应目录(PyDev)，将pydev.rar解压并将features+plugins文件夹复制到PyDev即可
+重启eclipse
+
++++++++++++++++++++++++++++++
+测试环境与工具见共享目录：
+\\rylanyan-ma\share\selenium_env
+
++++++++++++++++++++++++++++++
+eclipse打开指定文件目录：
+Run Tool-External Tools Configurations-Program-New launch configuration
+Location:C:\Windows\explorer.exe
+Arguments:${container_loc}
+
+++++++++++++++++++++++++++++
+配置IIS/Apache
