@@ -1,0 +1,1 @@
+requirejs.config({baseUrl:"src/",paths:{$:"libs/jquery",_:"libs/underscore",B:"libs/backbone",text:"libs/text",test1:"test1",test2:"test2",test:"test",text1:"text1.txt"}}),requirejs(["$","test","text!text1"],function(e,t,n){console.log(t.test1+","+t.test2),console.log(n)});

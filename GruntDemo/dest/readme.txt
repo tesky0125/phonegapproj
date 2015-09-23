@@ -1,1 +1,1 @@
-hello rylan:Wed Aug 12 2015 19:41:51., my gender is boy:Wed Aug 12 2015 19:41:51.!
+hello @@name, my gender is @@sex!

@@ -1,6 +1,7 @@
-define([],function(){
+define(['test1','test2'],function(test1,test2){
     var exports={
-        test:"hello world!"
+    	test1:test1.test1,
+        test2:test2.test2
     };
     return exports;
 });

@@ -1,0 +1,1 @@
+define("test1",[],function(){var e={test1:"hello world!"};return e}),define("test2",[],function(){var e={test2:"hello world!"};return e}),define("test",["test1","test2"],function(e,t){var n={test1:e.test1,test2:t.test2};return n});
