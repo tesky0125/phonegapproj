@@ -2,7 +2,7 @@ var app = app || {};
 (function(){
 	app.AppView = Backbone.View.extend({
 		el:"#todoapp",
-		statusTemplate:_.template($('#stats-template').html()),
+		statsTemplate:_.template($('#stats-template').html()),
 		events:{
 			'keypress #new-todo': 'createOnEnter',
 			'click #clear-completed': 'clearCompleted',
@@ -15,10 +15,58 @@ var app = app || {};
 			this.$main = this.$('#main');
 			this.$list = $('#todo-list');
 
+			this.listenTo(app.todos, 'add', this.addOne);
+			this.listenTo(app.todos, 'reset', this.addAll);
+			this.listenTo(app.todos, 'change:completed', this.filterOne);//TODO
+			this.listenTo(app.todos, 'filter', this.filterAll);
+			this.listenTo(app.todos, 'all', _.debounce(this.render, 0));
 			
+			app.todos.fetch({reset: true});
 		},
 		render:function(){
+			var completed = app.todos.completed().length;
+			var remaining = app.todos.remaining().length;
 
+			if (app.todos.length) {
+				this.$main.show();
+				this.$footer.show();
+
+				this.$footer.html(this.statsTemplate({
+					completed: completed,
+					remaining: remaining
+				}));
+
+				this.$('#filters li a')
+					.removeClass('selected')
+					.filter('[href="#/' + (app.TodoFilter || '') + '"]')
+					.addClass('selected');
+			} else {
+				this.$main.hide();
+				this.$footer.hide();
+			}
+
+			this.allCheckbox.checked = !remaining;
+		},
+		addOne: function (todo) {
+			var view = new app.TodoView({ model: todo });
+			this.$list.append(view.render().el);
+		},
+		addAll: function () {
+			this.$list.html('');
+			app.todos.each(this.addOne, this);
+		},
+		filterOne: function (todo) {
+			todo.trigger('visible');//TODO
+		},
+		filterAll: function () {
+			app.todos.each(this.filterOne, this);
+		},
+		newAttributes: function () {
+			return {
+				title: this.$input.val().trim(),
+				order: app.todos.nextOrder(),//TODO
+				completed: false
+			};
 		},
 		createOnEnter:function(e){
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
@@ -26,11 +74,18 @@ var app = app || {};
 				this.$input.val('');
 			}			
 		},
-		toggleAllComplete:function(){
-
+		clearCompleted: function () {
+			_.invoke(app.todos.completed(), 'destroy');
+			return false;
 		},
-		clearCompleted:function(){
+		toggleAllComplete: function () {
+			var completed = this.allCheckbox.checked;
 
+			app.todos.each(function (todo) {
+				todo.save({
+					completed: completed
+				});
+			});
 		}
 	});
 }());

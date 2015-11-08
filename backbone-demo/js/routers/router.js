@@ -5,8 +5,8 @@ var app=app||{};
 			'*filter': 'setFilter'
 		},
 		setFilter:function(param){
-			app.TodoFilter = param || '';
-			app.todos.trigger('filter');
+			app.TodoFilter = param || '';//Global object
+			app.todos.trigger('filter');//TODO
 		}
 	});
 	app.todoRouter = new app.TodoRouter();
