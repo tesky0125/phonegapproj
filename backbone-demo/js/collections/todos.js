@@ -1,6 +1,6 @@
 var app=app||{};
 (function(){
-	app.Todos = Backbone.Connection.extend({
+	app.Todos = Backbone.Collection.extend({
 		model:app.Todo,//
 		localStorage:new Backbone.LocalStorage('todos-backbone'),//
 		completed:function(){
