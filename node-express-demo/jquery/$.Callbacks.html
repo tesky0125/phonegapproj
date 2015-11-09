@@ -1,0 +1,15 @@
+<html>
+<body>
+<script src='jquery-2.0.3.js'></script>
+<script>
+var cb = $.Callbacks('memory');
+var func1=function(){
+	console.log(1);
+};
+var func2=function(){
+	console.log(2);
+};
+cb.add(func1).fire().lock().add(func2).fire();
+</script>
+</body>
+</html>

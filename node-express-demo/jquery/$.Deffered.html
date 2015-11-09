@@ -1,0 +1,119 @@
+<html>
+<body>
+<script src='/jquery-2.0.3.js'></script>
+<!--script>
+	$.ajax({
+　　　　url: "/data",
+　　　　success: function(data){
+　　　　　　alert("success");
+　　　　},
+　　　　error:function(){
+　　　　　　alert("error");
+　　　　}
+　　});
+</script-->
+<!--script>
+	$.ajax("/data2")
+　　.done(function(data){ 
+		alert("success"); 
+	})
+　　.fail(function(){ 
+		alert("error"); 
+	})
+	.done(function(data){ 
+		alert("success again"); 
+	});
+</script-->
+<!--script>
+	$.when($.ajax("/data"), $.ajax("/data2"))
+　　.done(function(){ 
+		alert("success"); 
+	})
+　　.fail(function(){ 
+		alert("error"); 
+	})
+	.done(function(){ 
+		alert("success again"); 
+	});
+</script-->
+
+<!--script>
+	var wait = function(){
+　　　　var tasks = function(){
+　　　　　　var ret = 1;
+			if(ret){
+				done();
+			}else{
+				fail();
+			}
+　　　　};
+　　　　setTimeout(tasks,3000);
+　　};
+	
+	var done = function(){alert("success"); };
+	var fail = function(){alert("error"); };
+	
+	wait();
+
+</script-->
+
+<!--script>
+	var dtd = $.Deferred();
+	var wait = function(dtd){
+　　　　var tasks = function(){
+　　　　　　var ret = 1;
+			if(ret){
+				dtd.resolve();
+			}else{
+				dtd.reject();
+			}
+　　　　};
+　　　　setTimeout(tasks,3000);
+		return dtd;
+　　};
+
+	$.when(wait(dtd))
+　　.done(function(){ alert("success"); })
+　　.fail(function(){ alert("error"); });
+</script-->
+
+<!--script>
+	var wait = function(){
+		var dtd = $.Deferred();
+　　　　var tasks = function(){
+　　　　　　var ret = 1;
+			if(ret){
+				dtd.resolve();
+			}else{
+				dtd.reject();
+			}
+　　　　};
+　　　　setTimeout(tasks,3000);
+		return dtd.promise();
+　　};
+
+	$.when(wait())
+　　.done(function(){ alert("success"); })
+　　.fail(function(){ alert("error"); });
+</script-->
+
+<script>
+	var wait = function(dtd){
+　　　　var tasks = function(){
+　　　　　　var ret = 1;
+			if(ret){
+				dtd.resolve();
+			}else{
+				dtd.reject();
+			}
+　　　　};
+　　　　setTimeout(tasks,3000);
+		return dtd.promise();
+　　};
+
+	$.Deferred(wait)
+　　.done(function(){ alert("success"); })
+　　.fail(function(){ alert("error"); });
+</script>
+</body>
+</html>
