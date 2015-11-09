@@ -1,3 +1,3 @@
 echo off
 
-grunt echo 'success' && grunt
+grunt && echo 'success' && grunt
