@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	.border{
+		border: 10px solid black;
+	}
+	#outter{
+		margin-top: 50px;
+		margin-left: 50px; 
+	}
+	#inner{
+		width: 250px;
+		height: 250px;
+		margin-top: 50px;
+		margin-left: 50px;
+		padding-top: 20px; 
+		padding-left: 20px; 
+		overflow: scroll;
+	}
+	</style>
+</head>
+<body>
+<div id='outter' class="border">
+	<div id='inner' class="border">hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!hello world!</div>
+</div>
+<script type="text/javascript">
+		var outter = document.getElementById('outter');
+		var inner = document.getElementById('inner');
+		inner.addEventListener('scroll',function(e) {
+			console.log('-------------------');
+			var scrollTop = inner.scrollTop;
+			console.log('scrollTop:'+scrollTop);
+		},false);
+		inner.addEventListener('click',function(e){
+			console.log('-------------------');
+			var clientX = e.clientX;
+			var offsetX = e.offsetX;
+			var screenX = e.screenX;
+			var pageX = e.pageX;
+			var x = e.x;
+			console.log('clientX:'+clientX);
+			console.log('offsetX:'+offsetX);
+			console.log('screenX:'+screenX);
+			console.log('pageX:'+pageX);
+			console.log('x:'+x);
+
+		},false);
+
+		var style = window.getComputedStyle(inner,null);
+		var borderWidth = style.borderWidth;//set by css, not by style
+		console.log('boderWidth:'+borderWidth);
+		var paddingLeft = style.paddingLeft;
+		console.log('paddingLeft:'+paddingLeft);
+		var marginLeft = style.marginLeft;
+		console.log('marginLeft:'+marginLeft);
+	console.log('-------------------');
+		var clientTop = inner.clientTop;//border width
+		console.log('clientTop:'+clientTop);
+		var offsetTop = inner.offsetTop;//relative to body
+		console.log('offsetTop:'+offsetTop);
+		var scrollTop = inner.scrollTop;
+		console.log('scrollTop:'+scrollTop);
+	console.log('-------------------');
+		var clientLeft = inner.clientLeft;//border width
+		console.log('clientLeft:'+clientLeft);
+		var offsetLeft = inner.offsetLeft;//
+		console.log('offsetLeft:'+offsetLeft);
+		var scrollLeft = inner.scrollLeft;
+		console.log('scrollLeft:'+scrollLeft);
+	console.log('-------------------');
+		var clientWidth = inner.clientWidth;
+		console.log('clientWidth:'+clientWidth);
+		var offsetWidth = inner.offsetWidth;
+		console.log('offsetWidth:'+offsetWidth);
+		var scrollWidth = inner.scrollWidth;
+		console.log('scrollWidth:'+scrollWidth);
+	console.log('-------------------');
+		var clientHeight = inner.clientHeight;
+		console.log('clientHeight:'+clientHeight);
+		var offsetHeight = inner.offsetHeight;
+		console.log('offsetHeight:'+offsetHeight);
+		var scrollHeight = inner.scrollHeight;
+		console.log('scrollHeight:'+scrollHeight);		
+</script>
+</body>
+</html>
