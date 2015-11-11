@@ -2863,9 +2863,8 @@
         jQuery.text = Sizzle.getText;
         jQuery.isXMLDoc = Sizzle.isXML;
         jQuery.contains = Sizzle.contains;
-
-
     })(window);
+
     // String to Object options format cache
     var optionsCache = {};
 
@@ -3063,6 +3062,7 @@
 
         return self;
     };
+
     jQuery.extend({
 
         Deferred: function(func) {
@@ -3204,6 +3204,7 @@
             return deferred.promise();
         }
     });
+
     jQuery.support = (function(support) {
         var input = document.createElement("input"),
             fragment = document.createDocumentFragment(),
@@ -3649,6 +3650,7 @@
         }
     });
 
+    //HTML5 data-* attribute
     function dataAttr(elem, key, data) {
         var name;
 
@@ -3677,6 +3679,7 @@
         }
         return data;
     }
+
     jQuery.extend({
         queue: function(elem, type, data) {
             var queue;
@@ -3822,6 +3825,7 @@
             return defer.promise(obj);
         }
     });
+
     var nodeHook, boolHook,
         rclass = /[\t\r\n\f]/g,
         rreturn = /\r/g,
