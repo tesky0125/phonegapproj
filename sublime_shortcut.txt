@@ -1,0 +1,44 @@
+Alt+Shift+- 跳转到光标下次所在位置
+Alt+- 跳转到光标上次所在位置
+
+Ctrl+P
+Ctrl+R
+
+Ctrl+Shift+[ 折叠代码
+Ctrl+Shift+] 展开代码
+Ctrl+K0 展开所有
+
+Ctrl+U 软撤销
+Ctrl+J 合并行
+Ctrl+T 词互换
+
+Ctrl+Shift+↑ 与上行互换
+Ctrl+Shift+↓ 与下行互换
+
+Ctrl+Enter 光标后插入行
+Ctrl+Shift+Enter 光标前插入行
+
+Ctrl+F2 设置书签
+F2 下一个书签
+Shift+F2 上一个书签
+
+Ctrl+L 选择整行（按住-继续选择下行）
+
+Ctrl+K Backspace 从光标处删除至行首
+Ctrl+KK 从光标处删除至行尾
+Ctrl+Shift+K 删除整行
+
+Ctrl+Shift+D 复制光标所在整行，插入在该行之前
+
+Ctrl+KU 改为大写
+Ctrl+KL 改为小写
+
+Ctrl+D 选词
+
+Ctrl+M 光标移动至括号内开始或结束的位置
+
+Ctrl+Shift+M 选择括号内的内容
+
+Ctrl+/ 注释整行
+Ctrl+Shift+/ 注释已选择内容
+
