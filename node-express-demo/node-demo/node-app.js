@@ -89,6 +89,18 @@ app.get('/data2', function(req, res) {
     });
 })*/
 
+app.route('/book')
+    .get(function(req, res) {
+        res.send('Get a random book');
+    })
+    .post(function(req, res) {
+        res.send('Add a book');
+    })
+    .put(function(req, res) {
+        res.send('Update the book');
+    });
+
+
 var server = app.listen(app.get('port'), function(){
     var host = server.address().address;
     var port = server.address().port;

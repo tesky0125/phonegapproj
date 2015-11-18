@@ -11,10 +11,13 @@
     "grunt-contrib-jshint": "*",
     "grunt-contrib-requirejs": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-contrib-cssmin":"*",
-    "grunt-replace":"*",
-    "matchdep":"*"
+    "grunt-contrib-cssmin": "*",
+    "grunt-replace": "*",
+    "matchdep": "*"
   },
-  "dependencies": {},
-  "file":"libs"
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "md5": "^2.0.0"
+  },
+  "file": "libs"
 }
