@@ -4,7 +4,7 @@
   "description": "demo",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "*",
+    "grunt": "^0.4.5",
     "grunt-contrib-clean": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
@@ -13,11 +13,11 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-cssmin": "*",
     "grunt-replace": "*",
-    "matchdep": "*"
+    "matchdep": "*",
+    "grunt-md5": "^0.1.11",
+    "md5": "^2.0.0"
   },
   "dependencies": {
-    "grunt": "^0.4.5",
-    "md5": "^2.0.0"
   },
   "file": "libs"
 }
