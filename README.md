@@ -3,12 +3,11 @@ web front project include all projects about web front end.
 
 #All projects list:
 
-#AutoTestPlus project
-AutoTestPlus project use selenium tool to develop auto test web project.
+#at-mgv/at-wallet project
+at-mgv/at-wallet project use selenium tool to develop auto test web project.
 
-#GruntDemo
-GruntDemo project use grunt to build web front project, include Require.js r.js.
-
+#grunt-demo
+grunt-demo project use grunt to build web front project, include Require.js r.js.
 
 #libs-sources
 libs-sources include some open source libs and framework, inlucde Underscore, jQuery, Backbone, RequireJS, zepto.
@@ -29,3 +28,11 @@ web-package use grunt tools to build web front project, it's lizard's build tool
 #backbone-demo
 backbone-demo project use backbone lib to build TODO-list demo.
 
+#backbone-require-demo
+backbone-require-demo project use backbone & requirejs lib to build TODO-list demo.
+
+#node-express-demo
+node-express-demo to study nodejs & express.
+
+#react-demo
+react-demo project use react lib to build TODO-list demo.
