@@ -1,7 +1,0 @@
-2015-01-21 18:59:25 [mgv.MGV_Global:main:0]-[INFO] driver_path:C:\Users\RylanYan\AppData\Local\Google\Chrome\Application\chromedriver.exe
-2015-01-21 18:59:25 [mgv.MGV_Global:main:1]-[INFO] username:rylan
-2015-01-21 18:59:25 [mgv.MGV_Global:main:1]-[INFO] password:123
-2015-01-21 18:59:25 [mgv.MGV_Global:main:1]-[INFO] upload_file_path:C:\Users\Public\Pictures\Sample Pictures\Chrysanthemum - Copy.jpg
-2015-01-21 18:59:25 [mgv.MGV_Global:main:2]-[INFO] mgv_web_url:http://localhost/WebUI/
-2015-01-21 18:59:37 [mgv.Login:main:11744]-[INFO] Login:login_to_mgv()
-2015-01-21 18:59:40 [mgv.Login:main:14750]-[INFO] Login:return_to_default()
