@@ -12,9 +12,6 @@ libs-sources include some open source libs and framework, inlucde Underscore, jQ
 #spa-demo
 spa-demo use namespace-style to bulid simple mvc project.
 
-#web-package
-web-package use grunt tools to build web front project, it's lizard's build tool, just for study web front build.
-
 #backbone-demo
 backbone-demo project use backbone lib to build TODO-list demo.
 
