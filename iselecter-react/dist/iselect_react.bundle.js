@@ -45,8 +45,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	__webpack_require__(4);
-	module.exports = __webpack_require__(6);
+	__webpack_require__(165);
+	module.exports = __webpack_require__(166);
 
 
 /***/ },
@@ -11878,169 +11878,7 @@
 
 
 /***/ },
-/* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _iscroll = __webpack_require__(1);
-
-	var _iscroll2 = _interopRequireDefault(_iscroll);
-
-	var _jquery = __webpack_require__(3);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	var _underscore = __webpack_require__(5);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	(function (root) {
-		var tmpl = '<div class="wrapper">' + '<div class="scroller">' + '<ul class="list">' + '<%for (var i = 0; i < data.length; i++) {%>' + '<li data-index="<%=i%>" ><%=data[i]%></li>' + '<%}%>' + '</ul>' + '</div>' + '<div class="mask"></div>' + '</div>';
-
-		var ISelecter = function ISelecter(container, options) {
-			this.container = (0, _jquery2.default)(container);
-			//default options
-			_underscore2.default.extend(this, {
-				width: 300, //unit:px
-				height: 50,
-				displayNum: 3,
-				animatTime: 100,
-				bounceTime: 100,
-				itemFontSize: 15,
-				highlightFontSize: 30,
-				data: [],
-				index: 0
-			}, options);
-
-			this.init();
-		};
-
-		ISelecter.prototype = {
-			constructor: ISelecter,
-			init: function init() {
-				this.initData();
-				this.render();
-				this.initDom();
-				this.initSize();
-				this.initScroll();
-				this.initIndex();
-				this.resetCss();
-			},
-			initData: function initData() {
-				this.innerData = _underscore2.default.extend([], this.data);
-				//fake items
-				this.fakeNum = this.displayNum - 1;
-				this.fakeOffsetNum = this.fakeNum / 2;
-				this.index = this.index + this.fakeOffsetNum;
-				for (var i = 0; i < this.fakeOffsetNum; i++) {
-					this.innerData.unshift('');
-					this.innerData.push('');
-				}
-			},
-			render: function render() {
-				//template
-				var html = _underscore2.default.template(tmpl)({
-					data: this.innerData
-				});
-				this.container.html(html);
-			},
-			initDom: function initDom() {
-				//initial dom
-				this.wrapper = this.container.find('.wrapper');
-				this.scroller = this.wrapper.find('.scroller');
-				this.list = this.scroller.find('ul');
-				this.items = this.list.find('li');
-			},
-			initSize: function initSize() {
-				this.itemWidth = this.width / this.displayNum;
-				this.itemNum = this.data.length;
-				//override width and height
-				this.wrapper.width(this.width);
-				this.wrapper.height(this.height);
-				this.scroller.width(this.itemWidth * (this.itemNum + this.fakeNum));
-				this.list.height(this.height);
-				this.items.height(this.height);
-				this.items.width(this.itemWidth);
-				this.items.css({
-					'line-height': this.height + 'px'
-				});
-				//offset to middle
-				this.scrollOffset = (this.displayNum - 1) / 2 * this.itemWidth;
-			},
-			initScroll: function initScroll() {
-				//prevent default event
-				this.container.on('touchmove', function (e) {
-					e.preventDefault();
-				});
-
-				//initial iscroll
-				this.scroll = new _iscroll2.default('.wrapper', {
-					scrollX: true,
-					scrollY: false,
-					bounceTime: this.bounceTime,
-					mouseWheel: false
-				});
-				this.scroll.on('scrollStart', _jquery2.default.proxy(function () {
-					console.log('[IScroll:scrollStart]');
-				}, this));
-				this.scroll.on('scrollEnd', _jquery2.default.proxy(function () {
-					console.log('[IScroll:scrollEnd]');
-					var index = this.getIndex();
-					this.setIndex(index);
-				}, this));
-
-				this.scroll.on('scrollCancel', _jquery2.default.proxy(function () {
-					console.log('[IScroll:scrollCancel]');
-				}, this));
-			},
-			initIndex: function initIndex() {
-				var index = this.index;
-				this.index = 0; //index always is 0 when init
-				this.setIndex(index);
-			},
-			getIndex: function getIndex() {
-				var pos = this.scroll.x - this.scrollOffset;
-				var index = Math.abs(pos) / this.itemWidth;
-				return Math.round(index);
-			},
-			setIndex: function setIndex(index) {
-				if (index < this.fakeOffsetNum + 0 || index >= this.fakeOffsetNum + this.itemNum) return;
-
-				var isChange = this.index != index;
-				this.index = index;
-
-				this.adjustPosition(true);
-				if (isChange) {
-					this.resetCss();
-					//trigger event
-					this.onselectchange && this.onselectchange(this.index - this.fakeOffsetNum, this.data);
-				}
-			},
-			adjustPosition: function adjustPosition(bAnimate) {
-				var index = this.index,
-				    left,
-				    time = 0;
-				left = this.itemWidth * index * -1 + this.scrollOffset;
-				if (bAnimate) time = this.animatTime;
-				this.scroll.scrollTo(left, 0, time); //will trigger scroll
-			},
-			resetCss: function resetCss() {
-				this.items.removeClass('current');
-				this.list.find('li[data-index="' + this.index + '"]').addClass('current');
-			}
-		};
-
-		if (typeof module != 'undefined' && module.exports) {
-			module.exports = ISelecter;
-		} else {
-			root.ISelecter = ISelecter;
-		}
-	})(window);
-
-/***/ },
+/* 4 */,
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -13595,51 +13433,7 @@
 
 
 /***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _react = __webpack_require__(7);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(164);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _iselect = __webpack_require__(4);
-
-	var _iselect2 = _interopRequireDefault(_iselect);
-
-	var _underscore = __webpack_require__(5);
-
-	var _underscore2 = _interopRequireDefault(_underscore);
-
-	var _jquery = __webpack_require__(3);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	(0, _jquery2.default)(function () {
-		// var style = window.getComputedStyle(document.getElementById('selecter'));
-		// var width = parseInt(style.width.replace(/^(\d+).*/,'$1'),10);
-		var data = ['100元', '200元', '300元', '400元', '500元', '600元'];
-		var iSelecter = new _iselect2.default('#selecter', {
-			width: 500 /*width*/, //unit:px
-			height: 100,
-			displayNum: 5,
-			data: data,
-			index: 2
-		});
-		iSelecter.onselectchange = function (index, data) {
-			console.log('index:' + index);
-			console.log('data:' + data);
-		};
-	});
-
-/***/ },
+/* 6 */,
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -33239,6 +33033,285 @@
 
 	module.exports = __webpack_require__(9);
 
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _iscroll = __webpack_require__(1);
+
+	var _iscroll2 = _interopRequireDefault(_iscroll);
+
+	var _jquery = __webpack_require__(3);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _underscore = __webpack_require__(5);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ISelecter = function (_React$Component) {
+		_inherits(ISelecter, _React$Component);
+
+		function ISelecter() {
+			_classCallCheck(this, ISelecter);
+
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ISelecter).call(this));
+
+			_this.state = {};
+			return _this;
+		}
+
+		_createClass(ISelecter, [{
+			key: 'componentWillMount',
+			value: function componentWillMount() {
+				var container = this.props.container;
+				var options = this.props.options;
+				this.onselectchange = this.props.onselectchange;
+				this.container = (0, _jquery2.default)(container);
+				//default options
+				_underscore2.default.extend(this, {
+					width: 300, //unit:px
+					height: 50,
+					displayNum: 3,
+					animatTime: 100,
+					bounceTime: 100,
+					itemFontSize: 15,
+					highlightFontSize: 30,
+					data: [],
+					index: 0
+				}, options);
+				this.initData();
+			}
+		}, {
+			key: 'initData',
+			value: function initData() {
+				this.innerData = _underscore2.default.extend([], this.data);
+				//fake items
+				this.fakeNum = this.displayNum - 1;
+				this.fakeOffsetNum = this.fakeNum / 2;
+				this.index = this.index + this.fakeOffsetNum;
+				for (var i = 0; i < this.fakeOffsetNum; i++) {
+					this.innerData.unshift('');
+					this.innerData.push('');
+				}
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				var list = this.innerData.map(function (item, index) {
+					return _react2.default.createElement(
+						'li',
+						{ key: index, 'data-index': index },
+						item
+					);
+				});
+				return _react2.default.createElement(
+					'div',
+					{ className: 'wrapper' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'scroller' },
+						_react2.default.createElement(
+							'ul',
+							{ className: 'list' },
+							list
+						)
+					),
+					_react2.default.createElement('div', { className: 'mask' })
+				);
+			}
+		}, {
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.initDom();
+				this.initSize();
+				this.initScroll();
+				this.initIndex();
+				this.resetCss();
+			}
+		}, {
+			key: 'initDom',
+			value: function initDom() {
+				//initial dom
+				this.wrapper = this.container.find('.wrapper');
+				this.scroller = this.wrapper.find('.scroller');
+				this.list = this.scroller.find('ul');
+				this.items = this.list.find('li');
+			}
+		}, {
+			key: 'initSize',
+			value: function initSize() {
+				this.itemWidth = this.width / this.displayNum;
+				this.itemNum = this.data.length;
+				//override width and height
+				this.wrapper.width(this.width);
+				this.wrapper.height(this.height);
+				this.scroller.width(this.itemWidth * (this.itemNum + this.fakeNum));
+				this.list.height(this.height);
+				this.items.height(this.height);
+				this.items.width(this.itemWidth);
+				this.items.css({
+					'line-height': this.height + 'px'
+				});
+				//offset to middle
+				this.scrollOffset = (this.displayNum - 1) / 2 * this.itemWidth;
+			}
+		}, {
+			key: 'initScroll',
+			value: function initScroll() {
+				//prevent default event
+				this.container.on('touchmove', function (e) {
+					e.preventDefault();
+				});
+
+				//initial iscroll
+				this.scroll = new _iscroll2.default('.wrapper', {
+					scrollX: true,
+					scrollY: false,
+					bounceTime: this.bounceTime,
+					mouseWheel: false
+				});
+				this.scroll.on('scrollStart', _jquery2.default.proxy(function () {
+					console.log('[IScroll:scrollStart]');
+				}, this));
+				this.scroll.on('scrollEnd', _jquery2.default.proxy(function () {
+					console.log('[IScroll:scrollEnd]');
+					var index = this.getIndex();
+					this.setIndex(index);
+				}, this));
+
+				this.scroll.on('scrollCancel', _jquery2.default.proxy(function () {
+					console.log('[IScroll:scrollCancel]');
+				}, this));
+			}
+		}, {
+			key: 'initIndex',
+			value: function initIndex() {
+				var index = this.index;
+				this.index = 0; //index always is 0 when init
+				this.setIndex(index);
+			}
+		}, {
+			key: 'getIndex',
+			value: function getIndex() {
+				var pos = this.scroll.x - this.scrollOffset;
+				var index = Math.abs(pos) / this.itemWidth;
+				return Math.round(index);
+			}
+		}, {
+			key: 'setIndex',
+			value: function setIndex(index) {
+				if (index < this.fakeOffsetNum + 0 || index >= this.fakeOffsetNum + this.itemNum) return;
+
+				var isChange = this.index != index;
+				this.index = index;
+
+				this.adjustPosition(true);
+				if (isChange) {
+					this.resetCss();
+					//trigger event
+					this.onselectchange && this.onselectchange(this.index - this.fakeOffsetNum, this.data);
+				}
+			}
+		}, {
+			key: 'adjustPosition',
+			value: function adjustPosition(bAnimate) {
+				var index = this.index,
+				    left,
+				    time = 0;
+				left = this.itemWidth * index * -1 + this.scrollOffset;
+				if (bAnimate) time = this.animatTime;
+				this.scroll.scrollTo(left, 0, time); //will trigger scroll
+			}
+		}, {
+			key: 'resetCss',
+			value: function resetCss() {
+				this.items.removeClass('current');
+				this.list.find('li[data-index="' + this.index + '"]').addClass('current');
+			}
+		}]);
+
+		return ISelecter;
+	}(_react2.default.Component);
+
+	exports.default = ISelecter;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _react = __webpack_require__(7);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(164);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _iselect_react = __webpack_require__(165);
+
+	var _iselect_react2 = _interopRequireDefault(_iselect_react);
+
+	var _underscore = __webpack_require__(5);
+
+	var _underscore2 = _interopRequireDefault(_underscore);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var data = ['100元', '200元', '300元', '400元', '500元', '600元'];
+	var options = {
+		width: 500 /*width*/, //unit:px
+		height: 100,
+		displayNum: 5,
+		data: data,
+		index: 2
+	};
+	var onselectchange = function onselectchange(index, data) {
+		console.log('index:' + index);
+		console.log('data:' + data);
+	};
+
+	_reactDom2.default.render(_react2.default.createElement(_iselect_react2.default, { container: '#selecter', options: options, onselectchange: onselectchange }), document.getElementById("selecter"));
+
+	// $(function(){
+	// 	// var style = window.getComputedStyle(document.getElementById('selecter'));
+	// 	// var width = parseInt(style.width.replace(/^(\d+).*/,'$1'),10);
+	// 	var data = ['100元', '200元', '300元', '400元', '500元', '600元'];
+	// 	var iSelecter = new ISelecter('#selecter',{
+	// 		width:500/*width*/,//unit:px
+	// 		height:100,
+	// 		displayNum:5,
+	// 		data:data,
+	// 		index:2
+	// 	});
+	// 	iSelecter.onselectchange = function(index, data){
+	// 		console.log('index:'+index);
+	// 		console.log('data:'+data);
+	// 	}
+	// });
 
 /***/ }
 /******/ ]);

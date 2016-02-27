@@ -1,21 +1,6 @@
 import IScroll from './iscroll';
 import $ from 'jquery';
 import _ from 'underscore';
-// import React from 'react';
-// import IScroll from './iscroll';
-
-// export default class ISelecter extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {};
-//     }
-//     render() {
-//         return (
-// 			<div>Hello World</div>
-// 		);
-//     }
-// }
-
 
 (function(root) {
 	var tmpl = '<div class="wrapper">' +
@@ -52,6 +37,7 @@ import _ from 'underscore';
 		init: function() {
 			this.initData();
 			this.render();
+			this.initDom();
 			this.initSize();
 			this.initScroll();
 			this.initIndex();
@@ -74,12 +60,14 @@ import _ from 'underscore';
 				data: this.innerData
 			});
 			this.container.html(html);
-			//initial dom
+		},
+		initDom: function() {
+	    	//initial dom
 			this.wrapper = this.container.find('.wrapper');
 			this.scroller = this.wrapper.find('.scroller');
 			this.list = this.scroller.find('ul');
 			this.items = this.list.find('li');
-		},
+	    },
 		initSize: function() {
 			this.itemWidth = this.width / this.displayNum;
 			this.itemNum = this.data.length;

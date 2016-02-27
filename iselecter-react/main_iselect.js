@@ -5,11 +5,6 @@ import _ from 'underscore';
 
 import $ from 'jquery'
 
-// ReactDom.render(
-// 	<ISelecter />,
-// 	document.getElementById('example')
-// );
-
 $(function(){
 	// var style = window.getComputedStyle(document.getElementById('selecter'));
 	// var width = parseInt(style.width.replace(/^(\d+).*/,'$1'),10);
