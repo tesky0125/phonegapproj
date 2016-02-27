@@ -1,3 +1,22 @@
+import IScroll from './iscroll';
+import $ from 'jquery';
+import _ from 'underscore';
+// import React from 'react';
+// import IScroll from './iscroll';
+
+// export default class ISelecter extends React.Component {
+//     constructor() {
+//         super();
+//         this.state = {};
+//     }
+//     render() {
+//         return (
+// 			<div>Hello World</div>
+// 		);
+//     }
+// }
+
+
 (function(root) {
 	var tmpl = '<div class="wrapper">' +
 					'<div class="scroller">' +
