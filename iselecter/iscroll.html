@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>iScroll demo: horizontal scrolling</title>
+    <link rel="stylesheet" type="text/css" href="iselect.css">
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="iscroll.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var myScroll = new IScroll('.wrapper', {
+            scrollX: true,
+            scrollY: false,
+            mouseWheel: true
+        });
+
+        $(document).click(function(e) {
+            myScroll.scrollBy(-100, 0, 1000);
+        });
+    });
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, false);
+    </script>
+</head>
+
+<body>
+    <div id="selector">
+        <div class="wrapper">
+            <div class="scroller">
+                <ul>
+                    <li>Cell 1</li>
+                    <li>Cell 2</li>
+                    <li>Cell 3</li>
+                    <li>Cell 4</li>
+                    <li>Cell 5</li>
+                    <li>Cell 6</li>
+                    <li>Cell 7</li>
+                    <li>Cell 8</li>
+                    <li>Cell 9</li>
+                    <li>Cell 10</li>
+                    <li>Cell 11</li>
+                    <li>Cell 12</li>
+                    <li>Cell 13</li>
+                    <li>Cell 14</li>
+                    <li>Cell 15</li>
+                    <li>Cell 16</li>
+                    <li>Cell 17</li>
+                    <li>Cell 18</li>
+                    <li>Cell 19</li>
+                    <li>Cell 20</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

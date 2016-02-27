@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iSelect</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="iselect.css">
+	<script type="text/javascript" src="underscore.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="iscroll.js"></script>
+	<script type="text/javascript" src="iselect.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var style = window.getComputedStyle(document.getElementById('selecter'));
+			var width = parseInt(style.width.replace(/^(\d+).*/,'$1'),10);
+			var data = ['100元', '200元', '300元', '400元', '500元', '600元'];
+			var iSelecter = new ISelecter('#selecter',{
+				width:width,//unit:px
+				height:100,
+				displayNum:5,
+				data:data,
+				index:2
+			});
+			iSelecter.onselectchange = function(index, data){
+				console.log('index:'+index);
+				console.log('data:'+data);
+			}
+		}.bind(this));
+	</script>
+</head>
+<body>
+<div id="selecter"></div>
+<div id="result"></div>
+</body>
+</html>
