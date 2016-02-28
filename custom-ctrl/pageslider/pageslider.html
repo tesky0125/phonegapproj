@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" value="notranslate">
+    <title>PageSlide demo horizontal(native JS)</title>
+    <link rel="stylesheet" type="text/css" href="pageslider.css">
+    <script type="text/javascript" src="pageslider.js"></script>
+    <script>
+    window.onload = function() {
+        var pages = new PageSlide(document.querySelector('.pages'), 'X', {
+            tranSetionEnd: function() {
+                console.log(this.current);
+            }
+        });
+    }
+    </script>
+</head>
+<body>
+    <div class="pages">
+        <div class="page page1" style="transform: translate3d(-451px, 0px, 0px);">page1</div>
+        <div class="page page2 play" style="transform: translate3d(0px, 0px, 0px);">page2
+            <div class="box myAnimation"></div>
+        </div>
+        <div class="page page3" style="transform: translate3d(451px, 0px, 0px);">page3</div>
+    </div>
+</body>
+
+</html>
